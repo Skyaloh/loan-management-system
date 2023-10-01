@@ -1,0 +1,6 @@
+id|name|code|value|created_by|last_modified_by|created_date|last_modified_date
+1|Middle Ware Endpoint|MIDDLEWARE_ENDPOINT|http://localhost:8081|system|system|2023-10-01 00:00:00.000000|2023-10-01 00:00:00.000000
+2|Main Score Engine Endpoint|MAIN_SCORE_ENGINE_ENDPOINT|https://scoringtest.credable.io|system|system|2023-10-01 00:00:00.000000|2023-10-01 00:00:00.000000
+3|Middle Ware Auth Username|MIDDLEWARE_USERNAME|admin|system|system|2023-10-01 00:00:00.000000|2023-10-01 00:00:00.000000
+4|Middle Ware Auth Password|MIDDLEWARE_PASSWORD|2023admin|system|system|2023-10-01 00:00:00.000000|2023-10-01 00:00:00.000000
+5|CBS Endpoint|CBS_ENDPOINT|http://kycapitest.credable.io:80|system|system|2023-10-01 00:00:00.000000|2023-10-01 00:00:00.000000

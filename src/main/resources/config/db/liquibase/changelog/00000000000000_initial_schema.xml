@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="00000000000000" author="kyalo (generated)">
+        <createSequence sequenceName="sequence_generator" startValue="1050" incrementBy="50"/>
+    </changeSet>
+
+    <changeSet id="00000000000001" author="kyalo (generated)">
+        <createTable tableName="customer">
+            <column name="id" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_customer"/>
+            </column>
+            <column name="customer_number" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="first_name" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="last_name" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="middle_name" type="VARCHAR(150)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="mobile" type="VARCHAR(20)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="id_number" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="dob" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="monthly_income" type="double">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="gender" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="id_type" type="VARCHAR(50)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="created_at" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="created_date" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="updated_at" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="00000000000002" author="kyalo (generated)">
+        <createTable tableName="loan">
+            <column name="id" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_loan"/>
+            </column>
+            <column name="amount" type="decimal(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repayment_date" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="disbursement_date" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="interest_amount" type="decimal(10,2)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="interest_percentage" type="decimal(10,2)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="overdue_fee_percentage" type="decimal(10,2)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="disbursement_charge_amount" type="decimal(10,2)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="loan_reference_number" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(100)" defaultValue="PENDING">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="00000000000003" author="kyalo (generated)">
+        <createTable tableName="system_config">
+            <column name="id" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_system_config"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="code" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="value" type="VARCHAR(225)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="00000000000004" author="kyalo (generated)">
+
+        <addForeignKeyConstraint baseColumnNames="customer_id"
+                                 baseTableName="loan"
+                                 constraintName="fk_loan_customer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customer"/>
+
+    </changeSet>
+
+    <changeSet id="00000000000005" author="kyalo (generated)">
+        <loadData file="config/db/liquibase/data/system_configs.csv" separator="|" tableName="system_config">
+            <column name="created_date" type="timestamp"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>
